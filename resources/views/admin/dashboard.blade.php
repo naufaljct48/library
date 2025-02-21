@@ -36,7 +36,7 @@
                 </div>
                 <div class="d-flex align-items-baseline">
                     <div class="h1 mb-0 me-2">{{ $totalUsers }}</div>
-                    <div class="me-auto">
+                    <div class="ms-auto">
                         <span class="text-green d-inline-flex align-items-center lh-1">
                             {{ $activeUsers }}
                             <i class="ti ti-users ms-1"></i>
