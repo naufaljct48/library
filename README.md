@@ -2,6 +2,8 @@
 
 Library Management System adalah aplikasi berbasis web yang dibangun menggunakan Laravel untuk mengelola peminjaman dan pengembalian buku.
 
+![Screenshot 2025-02-21 110530](https://github.com/user-attachments/assets/e182a3da-acae-466c-9e7c-a396982b9ea8)
+
 ## 🛠️ Teknologi yang Digunakan
 
 -   **Laravel 11** (PHP Framework)
@@ -48,6 +50,11 @@ Library Management System adalah aplikasi berbasis web yang dibangun menggunakan
 -   Email: `admin@admin.com`
 -   Password: `password`
 
+**Member**
+
+-   Email: `test@example.com`
+-   Password: `password`
+
 ## 📌 Fitur Utama
 
 -   🏠 **Autentikasi** (Login & Register)
@@ -55,11 +62,6 @@ Library Management System adalah aplikasi berbasis web yang dibangun menggunakan
 -   🔄 **Peminjaman & Pengembalian Buku**
 -   🛑 **Middleware Admin & User**
 -   📊 **Dashboard dengan Statistik Peminjaman**
-
-**User**
-
--   Email: `test@example.com`
--   Password: `password`
 
 ## 🛠️ Troubleshooting
 
