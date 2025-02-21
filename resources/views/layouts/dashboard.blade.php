@@ -29,17 +29,23 @@
     <!-- Tambahkan style untuk footer -->
     <style>
         .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
             border-top: 1px solid rgba(98, 105, 118, 0.16);
+            position: relative;
+            width: 100%;
+            margin-top: auto;
             padding: 1rem 0;
         }
 
         .page-body {
-            margin-bottom: 4rem;
-            /* Memberikan ruang untuk footer */
+            min-height: calc(100vh - 300px);
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Style untuk DataTables */
@@ -69,7 +75,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                    <a href=".">
+                    <a href="{{ Auth::user()->is_admin ? route('admin.dashboard') : route('dashboard') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-library">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
@@ -102,7 +108,7 @@
                     <div class="container-xl">
                         <ul class="navbar-nav">
                             <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('dashboard') }}">
+                                    <a class="nav-link" href="{{ Auth::user()->is_admin ? route('admin.dashboard') : route('dashboard') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-home icon"></i>
                                     </span>
@@ -111,7 +117,7 @@
                             </li>
                             @if(Auth::user()->is_admin)
                             <li class="nav-item {{ request()->is('admin/books*') ? 'active' : '' }}">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('admin.books.index') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-books icon"></i>
                                     </span>
@@ -119,7 +125,7 @@
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('admin.users.index') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-users icon"></i>
                                     </span>
@@ -127,9 +133,9 @@
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('admin/borrowings*') ? 'active' : '' }}">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('admin.borrowings.index') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <i class="ti ti-transfer icon"></i>
+                                        <i class="ti ti-history icon"></i>
                                     </span>
                                     <span class="nav-link-title">Borrowing History</span>
                                 </a>

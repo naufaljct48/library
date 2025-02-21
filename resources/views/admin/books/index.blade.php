@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Dashboard')
+@section('title', 'Manage Books')
 
 @section('content')
 <div class="row row-deck row-cards">
@@ -23,24 +23,6 @@
                 <div class="progress progress-sm">
                     <div class="progress-bar bg-primary" style="width: {{ ($availableBooks/$totalBooks)*100 }}%" role="progressbar">
                         <span class="visually-hidden">{{ ($availableBooks/$totalBooks)*100 }}% Available</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="subheader">Total Users</div>
-                </div>
-                <div class="d-flex align-items-baseline">
-                    <div class="h1 mb-0 me-2">{{ $totalUsers }}</div>
-                    <div class="me-auto">
-                        <span class="text-green d-inline-flex align-items-center lh-1">
-                            {{ $activeUsers }}
-                            <i class="ti ti-users ms-1"></i>
-                        </span>
                     </div>
                 </div>
             </div>

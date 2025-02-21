@@ -26,10 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/borrowings', [BorrowController::class, 'myBorrowings'])->name('borrowings.index');
 
-    Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::resource('books', BookController::class)->names('admin.books');
         Route::resource('users', UserController::class)->names('admin.users');
         Route::get('borrowings', [AdminController::class, 'borrowings'])->name('admin.borrowings.index');
+        Route::post('borrowings/{borrowing}/return', [AdminController::class, 'returnBook']);
     });
 });

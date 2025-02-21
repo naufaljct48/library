@@ -4,13 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+        if (!Auth::check() || Auth::user()->is_admin != 1) {
+            abort(redirect('/dashboard')->with('swal', [
+                'type' => 'error',
+                'title' => 'Akses Ditolak',
+                'text' => 'Kamu bukan admin.'
+            ]));
+        }
+    }
     public function index()
     {
+        $totalBooks = Book::count();
+        $availableBooks = Book::where('is_available', true)->count();
         $books = Book::all();
-        return view('admin.books.index', compact('books'));
+        return view('admin.books.index', compact(
+            'books',
+            'totalBooks',
+            'availableBooks',
+        ));
     }
 
     public function create()
@@ -29,10 +47,8 @@ class BookController extends Controller
         $validated['is_available'] = true;
         Book::create($validated);
 
-        return redirect()->route('admin.books.index')->with('swal', [
-            'type' => 'success',
-            'title' => 'Berhasil',
-            'text' => 'Buku berhasil ditambahkan'
+        return response()->json([
+            'message' => 'Book created successfully'
         ]);
     }
 
@@ -51,26 +67,23 @@ class BookController extends Controller
 
         $book->update($validated);
 
-        return redirect()->route('admin.books.index')->with('swal', [
-            'type' => 'success',
-            'title' => 'Berhasil',
-            'text' => 'Buku berhasil diupdate'
+        return response()->json([
+            'message' => 'Book updated successfully'
         ]);
     }
 
     public function destroy(Book $book)
     {
-        // Cek apakah buku sedang dipinjam
         if (!$book->is_available) {
             return response()->json([
-                'message' => 'Buku sedang dipinjam'
+                'message' => 'Cannot delete book that is currently borrowed'
             ], 400);
         }
 
         $book->delete();
 
         return response()->json([
-            'message' => 'Buku berhasil dihapus'
+            'message' => 'Book deleted successfully'
         ]);
     }
 }

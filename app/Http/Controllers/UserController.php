@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        if (!Auth::check() || Auth::user()->is_admin != 1) {
+            abort(redirect('/dashboard')->with('swal', [
+                'type' => 'error',
+                'title' => 'Akses Ditolak',
+                'text' => 'Kamu bukan admin.'
+            ]));
+        }
+    }
     public function index()
     {
         $users = User::where('is_admin', false)->get();
