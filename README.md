@@ -6,7 +6,7 @@ Library Management System adalah aplikasi berbasis web yang dibangun menggunakan
 
 -   **Laravel 11** (PHP Framework)
 -   **MySQL** (Database)
--   **Tailwind CSS** (Frontend Styling)
+-   **Bootstrap 5 - Tabler** (Frontend Styling)
 -   **Carbon** (Manipulasi Tanggal)
 
 ## 🚀 Instalasi
@@ -45,7 +45,7 @@ Library Management System adalah aplikasi berbasis web yang dibangun menggunakan
 
 **Admin**
 
--   Email: `admin@example.com`
+-   Email: `admin@admin.com`
 -   Password: `password`
 
 ## 📌 Fitur Utama
@@ -55,6 +55,11 @@ Library Management System adalah aplikasi berbasis web yang dibangun menggunakan
 -   🔄 **Peminjaman & Pengembalian Buku**
 -   🛑 **Middleware Admin & User**
 -   📊 **Dashboard dengan Statistik Peminjaman**
+
+**User**
+
+-   Email: `test@example.com`
+-   Password: `password`
 
 ## 🛠️ Troubleshooting
 
